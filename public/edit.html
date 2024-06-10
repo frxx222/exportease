@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Edit Invoice</title>
+    <link rel="stylesheet" href="css/edit.css">
+</head>
+
+<body class="edit-invoice-body">
+    <main class="edit-invoice">
+        <h1>Edit Invoice</h1>
+        <div class="edit-form">
+            <form id="edit-invoice-form">
+                <div class="input-group">
+                    <label for="edit-quantity">Quantity of Fish Products</label>
+                    <input type="number" id="edit-quantity" name="edit-quantity" required>
+                </div>
+                <div class="input-group">
+                    <label for="edit-destination">Destination</label>
+                    <input type="text" id="edit-destination" name="edit-destination" required>
+                </div>
+                <div class="input-group">
+                    <label for="edit-fish-type">Type of Fish</label>
+                    <input type="text" id="edit-fish-type" name="edit-fish-type" required>
+                </div>
+                <div class="button-group">
+                    <button type="submit">Save</button>
+                    <button type="button" id="cancel-button">Cancel</button>
+                </div>
+            </form>
+        </div>
+    </main>
+    </div>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            const editInvoiceForm = document.getElementById('edit-invoice-form');
+            const cancelButton = document.getElementById('cancel-button');
+
+            editInvoiceForm.addEventListener('submit', function(event) {
+                event.preventDefault();
+
+                // Get the updated data from the form
+                const quantity = document.getElementById('edit-quantity').value;
+                const destination = document.getElementById('edit-destination').value;
+                const fishType = document.getElementById('edit-fish-type').value;
+
+                // Retrieve the ID of the invoice being edited from the URL
+                const urlParams = new URLSearchParams(window.location.search);
+                const invoiceId = urlParams.get('id');
+
+                // Update the corresponding invoice in the invoices array
+                const invoices = JSON.parse(localStorage.getItem('invoices')) || [];
+                const updatedInvoices = invoices.map(invoice => {
+                    if (invoice.id === invoiceId) {
+                        return {
+                            ...invoice,
+                            quantity,
+                            destination,
+                            fishType
+                        };
+                    }
+                    return invoice;
+                });
+
+                // Store the updated invoices array in localStorage
+                localStorage.setItem('invoices', JSON.stringify(updatedInvoices));
+
+                // Redirect to the myinvoice.html page
+                window.location.href = 'myinvoice.html';
+            });
+
+            cancelButton.addEventListener('click', function() {
+                // Redirect to the myinvoice.html page when cancel button is clicked
+                window.location.href = 'myinvoice.html';
+            });
+        });
+    </script>
+</body>
+
+</html>

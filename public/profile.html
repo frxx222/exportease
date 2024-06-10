@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Profile</title>
+    <link rel="stylesheet" href="css/prof.css">
+</head>
+
+<body class="my-invoice-body">
+    <div class="container">
+        <nav class="navigation">
+            <ul>
+                <li><a href="home.html">Home</a></li>
+                <li><a href="subinvoice.html">Submit Invoice</a></li>
+                <li><a href="myinvoice.html">My Invoice</a></li>
+                <li><a href="notification.html">Notifications</a></li>
+                <li><a href="profile.html">Profile</a></li>
+            </ul>
+        </nav>
+        <div class="container">
+            <h1>Profile</h1>
+            <div class="profile-fields">
+                <div class="field">
+                    <label for="business-name">Business Name:</label>
+                    <input type="text" id="business-name" value="" readonly>
+                </div>
+                <div class="field">
+                    <label for="contact-info">Contact Information:</label>
+                    <input type="text" id="contact-info" value="" readonly>
+                </div>
+                <div class="field">
+                    <label for="documents">Documents:</label>
+                    <input type="file" id="documents">
+                </div>
+            </div>
+            <div class="buttons">
+                <button id="edit-profile">Edit Profile</button>
+                <button id="save-changes">Save Changes</button>
+                <!-- Logout button -->
+                <button id="logout">Logout</button>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        const editProfileBtn = document.getElementById('edit-profile');
+        const saveChangesBtn = document.getElementById('save-changes');
+        const businessNameInput = document.getElementById('business-name');
+        const contactInfoInput = document.getElementById('contact-info');
+
+        // Function to enable editing of profile fields
+        function enableEdit() {
+            businessNameInput.removeAttribute('readonly');
+            contactInfoInput.removeAttribute('readonly');
+        }
+
+        // Function to disable editing of profile fields
+        function disableEdit() {
+            businessNameInput.setAttribute('readonly', 'readonly');
+            contactInfoInput.setAttribute('readonly', 'readonly');
+        }
+
+        // Event listener for edit profile button
+        editProfileBtn.addEventListener('click', function() {
+            enableEdit();
+        });
+
+        // Event listener for save changes button
+        saveChangesBtn.addEventListener('click', function() {
+            disableEdit();
+            // Save changes to local storage
+            localStorage.setItem('username', businessNameInput.value);
+            localStorage.setItem('contactInfo', contactInfoInput.value);
+            // Redirect back to the home page
+            window.location.href = 'home.html';
+        });
+
+        // Event listener for logout button
+        document.getElementById('logout').addEventListener('click', function() {
+            // Redirect to the login page
+            window.location.href = 'login.html';
+        });
+
+        // Retrieve and populate profile data from local storage
+        businessNameInput.value = localStorage.getItem('username');
+        contactInfoInput.value = localStorage.getItem('contactInfo');
+    </script>
+</body>
+
+</html>

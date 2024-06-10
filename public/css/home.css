@@ -1,0 +1,108 @@
+/* General reset */
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: Arial, sans-serif;
+    background-color: #f0f0f0;
+}
+
+.container {
+    display: flex;
+    min-height: 100vh;
+}
+
+
+/* Navigation Menu */
+
+.navigation {
+    width: 200px;
+    background-color: #007BFF;
+    color: #fff;
+}
+
+.navigation ul {
+    list-style-type: none;
+    padding: 1rem;
+}
+
+.navigation ul li {
+    margin-bottom: 1rem;
+}
+
+.navigation ul li a {
+    color: #fff;
+    text-decoration: none;
+    display: block;
+    padding: 0.5rem 1rem;
+    border-radius: 5px;
+}
+
+.navigation ul li a:hover {
+    background-color: #0056b3;
+}
+
+
+/* Dashboard */
+
+.dashboard {
+    flex-grow: 1;
+    padding: 2rem;
+    background-color: #fff;
+}
+
+.dashboard h1 {
+    margin-bottom: 1.5rem;
+}
+
+.overview {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 1rem;
+}
+
+.card {
+    background-color: #f8f9fa;
+    border: 1px solid #ddd;
+    border-radius: 5px;
+    padding: 1rem;
+    flex: 1;
+    min-width: 150px;
+    max-width: 200px;
+    text-align: center;
+}
+
+.card h2 {
+    margin-bottom: 0.5rem;
+    font-size: 1.2rem;
+    color: #007BFF;
+}
+
+.card p {
+    font-size: 1.5rem;
+    color: #333;
+}
+
+
+/* Responsive Design */
+
+@media (max-width: 768px) {
+    .container {
+        flex-direction: column;
+    }
+    .navigation {
+        width: 100%;
+        text-align: center;
+    }
+    .navigation ul {
+        display: flex;
+        justify-content: space-around;
+    }
+    .dashboard {
+        padding: 1rem;
+    }
+}

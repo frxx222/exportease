@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Dashboard Home Page</title>
+    <link rel="stylesheet" href="css/home.css">
+</head>
+
+<body class="home-body">
+    <div class="container">
+        <nav class="navigation">
+            <ul>
+                <li><a href="home.html">Home</a></li>
+                <li><a href="subinvoice.html">Submit Invoice</a></li>
+                <li><a href="myinvoice.html">My Invoice</a></li>
+                <li><a href="notification.html">Notifications</a></li>
+                <li><a href="profile.html">Profile</a></li>
+            </ul>
+        </nav>
+        <main class="dashboard">
+            <h1>Dashboard</h1>
+            <div class="overview">
+                <div class="card">
+                    <h2>Total Invoices</h2>
+                    <p id="total-invoices">0</p>
+                </div>
+                <div class="card">
+                    <h2>Pending Approval</h2>
+                    <p id="pending-approval">0</p>
+                </div>
+                <div class="card">
+                    <h2>Profile</h2>
+                    <p id="username-display"></p>
+                </div>
+            </div>
+        </main>
+    </div>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            const invoices = JSON.parse(localStorage.getItem('invoices')) || [];
+            const totalInvoices = invoices.length;
+            document.getElementById('total-invoices').textContent = totalInvoices;
+
+            const pendingApproval = invoices.filter(invoice => invoice.status === 'Pending').length;
+            document.getElementById('pending-approval').textContent = pendingApproval;
+
+            const username = localStorage.getItem('username');
+            if (username) {
+                document.getElementById('username-display').textContent = username;
+            } else {
+                window.location.href = 'index.html'; // Redirect to login if no username is found
+            }
+        });
+    </script>
+</body>
+
+</html>

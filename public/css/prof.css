@@ -1,0 +1,100 @@
+/* General reset */
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: Arial, sans-serif;
+    background-color: #f0f0f0;
+    /* Add left padding to prevent content from being covered by navigation */
+    padding-left: 220px;
+}
+
+
+/* Navigation Menu */
+
+.navigation {
+    width: 200px;
+    background-color: #007BFF;
+    color: #fff;
+    padding: 1rem;
+    position: fixed;
+    /* Fixed position to keep it always visible */
+    top: 0;
+    /* Position at the top of the viewport */
+    left: 0;
+    /* Position at the left of the viewport */
+    bottom: 0;
+    /* Extend to the bottom of the viewport */
+}
+
+.navigation ul {
+    list-style-type: none;
+    padding: 0;
+    margin: 0;
+}
+
+.navigation ul li {
+    margin-bottom: 1rem;
+}
+
+.navigation ul li a {
+    color: #fff;
+    text-decoration: none;
+    display: block;
+    padding: 0.5rem 1rem;
+    border-radius: 5px;
+}
+
+.navigation ul li a:hover {
+    background-color: #0056b3;
+}
+
+h1 {
+    text-align: center;
+    margin-bottom: 20px;
+}
+
+.profile-fields {
+    margin-bottom: 20px;
+}
+
+.field {
+    margin-bottom: 10px;
+}
+
+.field label {
+    display: inline-block;
+    width: 150px;
+    /* Adjust width of label */
+}
+
+.field input[type="text"],
+.field input[type="file"] {
+    width: calc(100% - 160px);
+    /* Adjusted width of input */
+    padding: 5px;
+    border: 1px solid #ccc;
+    border-radius: 3px;
+}
+
+.buttons {
+    text-align: center;
+}
+
+.buttons button {
+    padding: 10px 20px;
+    margin-right: 10px;
+    background-color: #007BFF;
+    color: #fff;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+}
+
+.buttons button:hover {
+    background-color: #0056b3;
+}

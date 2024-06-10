@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Submit Invoice</title>
+    <link rel="stylesheet" href="css/invoice.css">
+</head>
+
+<body class="invoice-body">
+    <div class="container">
+        <nav class="navigation">
+            <ul>
+                <li><a href="home.html">Home</a></li>
+                <li><a href="subinvoice.html">Submit Invoice</a></li>
+                <li><a href="myinvoice.html">My Invoice</a></li>
+                <li><a href="notification.html">Notifications</a></li>
+                <li><a href="#">Profile</a></li>
+            </ul>
+        </nav>
+        <main class="invoice-dashboard">
+            <h1>Submit Invoice</h1>
+            <form id="invoice-form">
+                <div class="input-group">
+                    <label for="quantity">Quantity of Fish Products</label>
+                    <input type="number" id="quantity" name="quantity" required>
+                </div>
+                <div class="input-group">
+                    <label for="destination">Destination</label>
+                    <input type="text" id="destination" name="destination" required>
+                </div>
+                <div class="input-group">
+                    <label for="fish-type">Type of Fish</label>
+                    <input type="text" id="fish-type" name="fish-type" required>
+                </div>
+                <div class="button-group">
+                    <button type="submit">Submit</button>
+                    <button type="button" id="cancel-button">Delete</button>
+                </div>
+            </form>
+        </main>
+    </div>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            const cancelButton = document.getElementById('cancel-button');
+            const invoiceForm = document.getElementById('invoice-form');
+
+            cancelButton.addEventListener('click', function() {
+                invoiceForm.reset();
+            });
+
+            invoiceForm.addEventListener('submit', function(event) {
+                event.preventDefault();
+
+                const quantity = document.getElementById('quantity').value;
+                const destination = document.getElementById('destination').value;
+                const fishType = document.getElementById('fish-type').value;
+                const currentDate = new Date().toLocaleDateString(); // Get current date
+
+                const invoice = {
+                    id: generateInvoiceId(), // Generate a unique ID for the invoice
+                    date: currentDate, // Add current date
+                    quantity,
+                    destination,
+                    fishType,
+                    status: 'Pending'
+                };
+
+                let invoices = JSON.parse(localStorage.getItem('invoices')) || [];
+                invoices.push(invoice);
+                localStorage.setItem('invoices', JSON.stringify(invoices));
+
+                // Redirect to My Invoice page
+                window.location.href = 'myinvoice.html';
+            });
+
+            // Function to generate a unique invoice ID
+            function generateInvoiceId() {
+                return 'INV-' + Math.random().toString(36).substr(2, 9);
+            }
+        });
+    </script>
+</body>
+
+</html>

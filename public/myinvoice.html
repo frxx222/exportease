@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>My Invoice</title>
+    <link rel="stylesheet" href="css/my.css">
+</head>
+
+<body class="my-invoice-body">
+    <div class="container">
+        <nav class="navigation">
+            <ul>
+                <li><a href="home.html">Home</a></li>
+                <li><a href="subinvoice.html">Submit Invoice</a></li>
+                <li><a href="myinvoice.html">My Invoice</a></li>
+                <li><a href="notification.html">Notifications</a></li>
+                <li><a href="profile.html">Profile</a></li>
+            </ul>
+        </nav>
+        <main class="invoice-table">
+            <h1>My Invoice</h1>
+            <table>
+                <thead>
+                    <tr>
+                        <th>Invoice ID</th>
+                        <th>Date Submitted</th>
+                        <th>Quantity</th>
+                        <th>Destination</th>
+                        <th>Actions</th>
+                    </tr>
+                </thead>
+                <tbody id="invoice-list">
+                    <!-- Invoice rows will be dynamically generated here -->
+                </tbody>
+            </table>
+        </main>
+    </div>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            const invoices = JSON.parse(localStorage.getItem('invoices')) || [];
+            const tableBody = document.getElementById('invoice-list');
+
+            // Function to generate table rows for invoices
+            function generateTableRows() {
+                tableBody.innerHTML = ''; // Clear existing rows
+
+                invoices.forEach(function(invoice) {
+                    const row = document.createElement('tr');
+                    row.innerHTML = `
+                        <td>${invoice.id}</td>
+                        <td>${invoice.date}</td>
+                        <td>${invoice.quantity}</td>
+                        <td>${invoice.destination}</td>
+                        <td>
+                            <button onclick="editInvoice('${invoice.id}')">Edit</button>
+                            <button onclick="cancelInvoice('${invoice.id}')">Cancel</button>
+                        </td>
+                    `;
+                    tableBody.appendChild(row);
+                });
+            }
+
+            generateTableRows(); // Call the function to initially populate the table
+
+            // Function to edit an invoice
+            window.editInvoice = function(id) {
+                // Redirect to the edit page with the invoice ID
+                window.location.href = 'edit.html?id=' + id;
+            };
+
+            // Function to cancel an invoice
+            window.cancelInvoice = function(id) {
+                // Remove the invoice from the list
+                invoices.splice(invoices.findIndex(invoice => invoice.id === id), 1);
+                localStorage.setItem('invoices', JSON.stringify(invoices));
+                generateTableRows(); // Update the table
+            };
+
+        });
+    </script>
+</body>
+
+</html>

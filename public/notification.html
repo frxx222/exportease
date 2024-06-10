@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Notifications</title>
+    <link rel="stylesheet" href="css/notif.css">
+</head>
+
+<body class="notifications-body">
+    <div class="container">
+        <nav class="navigation">
+            <ul>
+                <li><a href="home.html">Home</a></li>
+                <li><a href="subinvoice.html">Submit Invoice</a></li>
+                <li><a href="myinvoice.html">My Invoice</a></li>
+                <li><a href="notification.html">Notifications</a></li>
+                <li><a href="profile.html">Profile</a></li>
+            </ul>
+        </nav>
+        <main class="notifications">
+            <h1>Notifications</h1>
+            <div class="filter-options">
+                <label for="filter-date">Filter by Date:</label>
+                <input type="date" id="filter-date">
+                <label for="filter-type">Filter by Type:</label>
+                <select id="filter-type">
+                    <option value="all">All</option>
+                    <option value="approval">Approval</option>
+                    <option value="rejection">Rejection</option>
+                    <option value="update">Update</option>
+                </select>
+            </div>
+            <div class="notification-list">
+                <!-- Notification items will be dynamically generated here -->
+            </div>
+        </main>
+    </div>
+
+    <script src="notifications.js"></script>
+</body>
+
+</html>

@@ -1,0 +1,98 @@
+/* General reset */
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: Arial, sans-serif;
+    background-color: #f0f0f0;
+}
+
+.container {
+    display: flex;
+    min-height: 100vh;
+}
+
+
+/* Navigation Menu */
+
+.navigation {
+    width: 200px;
+    background-color: #007BFF;
+    color: #fff;
+    padding: 1rem;
+}
+
+.navigation ul {
+    list-style-type: none;
+    padding: 0;
+    margin: 0;
+}
+
+.navigation ul li {
+    margin-bottom: 1rem;
+}
+
+.navigation ul li a {
+    color: #fff;
+    text-decoration: none;
+    display: block;
+    padding: 0.5rem 1rem;
+    border-radius: 5px;
+}
+
+.navigation ul li a:hover {
+    background-color: #0056b3;
+}
+
+.notifications {
+    width: 80%;
+    /* Adjust width as needed */
+    max-width: 800px;
+    /* Limit maximum width */
+    margin: 0 auto;
+    /* Center horizontally */
+    padding: 20px;
+    /* Add some padding */
+}
+
+.notifications h1 {
+    margin-bottom: 20px;
+    /* Add margin bottom to the heading */
+}
+
+.filter-options {
+    margin-bottom: 20px;
+    /* Add margin bottom to the filter options */
+}
+
+.filter-options label {
+    margin-right: 10px;
+    /* Add margin between labels and inputs */
+}
+
+.notification-list {
+    width: 100%;
+    border: 1px solid #ccc;
+    padding: 10px;
+    background-color: #fff;
+    border-radius: 5px;
+}
+
+.notification-item {
+    margin-bottom: 10px;
+    padding: 10px;
+    border-bottom: 1px solid #ccc;
+}
+
+.notification-item:last-child {
+    border-bottom: none;
+}
+
+.notification-item .date {
+    font-style: italic;
+    color: #888;
+}
